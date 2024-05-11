@@ -17,3 +17,25 @@
     justify-content: flex-start; /* Aligns items to the start of the container */
     gap: 10px;
 }
+
+.main_button {
+    padding: 12px 24px; /* Larger padding for bigger button */
+    font-size: 16px; /* Larger text size */
+    background-color: #6da2d1; /* Light blue color fill */
+    color: #333; /* Dark text color for contrast */
+    border: none; /* No border */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.main_button:hover {
+    background-color: #e0f0ff; /* Slightly darker blue on hover for feedback */
+}
+
+.main_button:disabled {
+    background-color: #ccc; /* Gray background for disabled buttons */
+    color: #666; /* Darker gray text for disabled state */
+    cursor: not-allowed; /* Cursor indicates button is not clickable */
+    pointer-events: none; /* Prevents click events on the disabled button */
+}
