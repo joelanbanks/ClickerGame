@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1 id="score">You have 0 things</h1>
+
+  <div id="grid-container">
+      <div id="left">
+        <div class="container">
+            <button id="main_1">Level 1</button>
+            <p id="main_1_product">Level 1 is making you 0 per second</p>
+        </div>
+
+        <div class="container">
+            <button id="main_2" disabled>Level 2</button>
+            <p id="main_2_product">Level 2 is multiplying level 1 by 1</p>
+        </div>
+
+        <div class="container">
+            <button id="main_3" disabled>Level 3</button>
+            <p id="main_3_product">Level 3 is multiplying level 2 by 1</p>
+        </div>
+      </div>
+
+      <div id="right">
+        <button id="unlock_main_2" disabled>Unlock Level 2: Cost 10</button>
+        <button id="level_1_mult" disabled>Level 1 times 2: Cost 20</button>
+        <button id="unlock_main_3" disabled>Unlock Level 3: Cost 100</button>
+        <button id="level_1_power" disabled>Slower L1 decay: Cost 100</button>
+      </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
