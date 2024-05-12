@@ -3,11 +3,15 @@ let main_1_add = 0;
 let main_2_add = 1;
 let main_3_add = 1;
 let main_4_add = 1;
+let main_5_add = 1;
+let main_6_add = 1;
 
 let timer_1 = null; // Moved to a higher scope to be accessible throughout the script
 let timer_2 = null;
 let timer_3 = null;
 let timer_4 = null;
+let timer_5 = null;
+let timer_6 = null;
 
 const unlock_level_2 = document.getElementById('unlock_main_2');
 const main_2 = document.getElementById('main_2');
@@ -17,6 +21,12 @@ const main_3 = document.getElementById('main_3');
 
 const unlock_level_4 = document.getElementById('unlock_main_4');
 const main_4 = document.getElementById('main_4');
+
+const unlock_level_5 = document.getElementById('unlock_main_5');
+const main_5 = document.getElementById('main_5');
+
+const unlock_level_6 = document.getElementById('unlock_main_6');
+const main_6 = document.getElementById('main_6');
 
 const unlock_level_1_mult = document.getElementById('level_1_mult');
 let level_1_mult_price = 20;
@@ -29,6 +39,11 @@ let level_2_mult = 1;
 const unlock_level_3_mult = document.getElementById('level_3_mult');
 let level_3_mult_price = 1000;
 let level_3_mult = 1;
+
+let level_4_mult = 1;
+let level_5_mult = 1;
+let level_4_power = 1;
+let level_5_power = 1;
 
 const unlock_level_1_power = document.getElementById('level_1_power');
 let level_1_power_price = 100;
@@ -90,8 +105,34 @@ document.getElementById('main_4').addEventListener('click', function() {
 
     timer_4 = setInterval(function() {
         main_4_prod++;
-        main_4_add = Math.round((1+(1/main_4_prod)) * 100) / 100;
+        main_4_add = 1+(Math.pow((1/main_4_prod), (1/level_4_power)));
+        main_4_add = main_4_add * main_5_add * level_4_mult;
+        main_4_add = Math.round(main_4_add * 100) / 100;
         document.getElementById('main_4_product').textContent = 'Level 4 is multiplying level 3 by ' + main_4_add;
+        }, 1000); // Update every second
+});
+
+document.getElementById('main_5').addEventListener('click', function() {
+    main_5_prod = 0;
+    if (timer_5 !== null) return; // Prevent multiple timers if button is clicked again
+
+    timer_5 = setInterval(function() {
+        main_5_prod++;
+        main_5_add = 1+(Math.pow((1/main_5_prod), (1/level_5_power)));
+        main_5_add = main_5_add * main_6_add * level_5_mult;
+        main_5_add = Math.round(main_5_add * 100) / 100;
+        document.getElementById('main_5_product').textContent = 'Level 5 is multiplying level 4 by ' + main_5_add;
+        }, 1000); // Update every second
+});
+
+document.getElementById('main_6').addEventListener('click', function() {
+    main_6_prod = 0;
+    if (timer_6 !== null) return; // Prevent multiple timers if button is clicked again
+
+    timer_6 = setInterval(function() {
+        main_6_prod++;
+        main_6_add = Math.round((1+(1/main_6_prod)) * 100) / 100;
+        document.getElementById('main_6_product').textContent = 'Level 6 is multiplying level 5 by ' + main_6_add;
         }, 1000); // Update every second
 });
 
@@ -112,6 +153,18 @@ document.getElementById('unlock_main_4').addEventListener('click', function() {
     score -= 1000;
     main_4.disabled = false;
     unlock_level_4.remove();
+});
+
+document.getElementById('unlock_main_5').addEventListener('click', function() {
+    score -= 10000;
+    main_5.disabled = false;
+    unlock_level_5.remove();
+});
+
+document.getElementById('unlock_main_6').addEventListener('click', function() {
+    score -= 100000;
+    main_6.disabled = false;
+    unlock_level_6.remove();
 });
 
 document.getElementById('level_1_mult').addEventListener('click', function() {
@@ -199,6 +252,18 @@ function unlockupgrades() {
         unlock_level_4.disabled = false;
     } else {
         unlock_level_4.disabled = true;
+    }
+
+    if (score >= 10000) {
+        unlock_level_5.disabled = false;
+    } else {
+        unlock_level_5.disabled = true;
+    }
+
+    if (score >= 100000) {
+        unlock_level_6.disabled = false;
+    } else {
+        unlock_level_6.disabled = true;
     }
 
     if (score >= level_1_power_price) {
